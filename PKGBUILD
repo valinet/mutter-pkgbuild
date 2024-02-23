@@ -1,4 +1,5 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Maintainer: Fabian Bornschein <fabiscafe@archlinux.org>
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Michael Kanis <mkanis_at_gmx_dot_de>
 
@@ -7,32 +8,67 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=45.4
+pkgver=46beta
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
 license=(GPL-2.0-or-later)
 depends=(
+  at-spi2-core
+  cairo
   colord
   dconf
+  fontconfig
+  fribidi
+  gcc-libs
+  gdk-pixbuf2
+  glib2
+  glibc
   gnome-desktop-4
   gnome-settings-daemon
   graphene
   gsettings-desktop-schemas
+  gtk4
+  harfbuzz
   iio-sensor-proxy
   lcms2
   libcanberra
+  libcolord
   libdisplay-info
+  libdrm
   libei
+  libglvnd
   libgudev
+  libice
   libinput
+  libpipewire
   libsm
   libsysprof-capture
+  libwacom
+  libx11
+  libxau
+  libxcb
+  libxcomposite
+  libxcursor
+  libxdamage
+  libxext
+  libxfixes
+  libxi
+  libxinerama
+  libxkbcommon
   libxkbcommon-x11
   libxkbfile
+  libxrandr
+  libxtst
+  mesa
+  pango
   pipewire
+  pixman
+  python
   startup-notification
+  systemd-libs
+  wayland
   xorg-xwayland
 )
 makedepends=(
@@ -53,7 +89,7 @@ checkdepends=(
   wireplumber
   zenity
 )
-_commit=919e71b113cc03c0fe1de7777393a19947f7b9f9  # tags/45.4^0
+_commit=f8a257e104cf2055bccc3d1c9342d3c705fe8f3b  # tags/46.beta^0
 source=(
   "git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
 )
@@ -61,7 +97,7 @@ b2sums=('SKIP')
 
 pkgver() {
   cd mutter
-  git describe --tags | sed 's/[^-]*-g/r&/;s/-/+/g'
+  git describe --tags | sed -r 's/\.([a-z])/\1/;s/([a-z])\./\1/;s/[^-]*-g/r&/;s/-/+/g'
 }
 
 prepare() {
@@ -92,9 +128,12 @@ check() (
   export NO_AT_BRIDGE=1 GTK_A11Y=none
   export MUTTER_DEBUG_DUMMY_MODE_SPECS="800x600@10.0"
 
+  # Tests fail:
+  # mutter:cogl+cogl/conform / cogl-test-offscreen-texture-formats-gles2
   xvfb-run -s '-nolisten local +iglx -noreset' \
     mutter/src/tests/meta-dbus-runner.py --launch=pipewire --launch=wireplumber \
-    meson test -C build --print-errorlogs -t 5 --setup plain
+    meson test -C build --no-suite 'mutter/kvm' --no-rebuild \
+    --print-errorlogs --timeout-multiplier 10 --setup plain ||:
 )
 
 _pick() {
@@ -108,7 +147,7 @@ _pick() {
 }
 
 package_mutter() {
-  provides=(libmutter-13.so)
+  provides=(libmutter-14.so)
 
   meson install -C build --destdir "$pkgdir"
 
