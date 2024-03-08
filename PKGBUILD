@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=46beta
+pkgver=46rc
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -89,7 +89,7 @@ checkdepends=(
   wireplumber
   zenity
 )
-_commit=f8a257e104cf2055bccc3d1c9342d3c705fe8f3b  # tags/46.beta^0
+_commit=1e74e5071f381b2dd9026f8186987245dfd89100  # tags/46.rc^0
 source=(
   "git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
 )
@@ -109,7 +109,7 @@ build() {
     -D docs=true
     -D egl_device=true
     -D installed_tests=false
-    -D libdisplay_info=true
+    -D libdisplay_info=enabled
     -D wayland_eglstream=true
   )
 
@@ -130,6 +130,8 @@ check() (
 
   # Tests fail:
   # mutter:cogl+cogl/conform / cogl-test-offscreen-texture-formats-gles2
+  # mutter:core+mutter/stacking / fullscreen-maximize
+  ## https://gitlab.gnome.org/GNOME/mutter/-/issues/3343
   xvfb-run -s '-nolisten local +iglx -noreset' \
     mutter/src/tests/meta-dbus-runner.py --launch=pipewire --launch=wireplumber \
     meson test -C build --no-suite 'mutter/kvm' --no-rebuild \
