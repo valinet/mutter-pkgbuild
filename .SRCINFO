@@ -1,7 +1,7 @@
 pkgbase = mutter
 	pkgdesc = Window manager and compositor for GNOME
 	pkgver = 46.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -74,8 +74,10 @@ pkgbase = mutter
 	depends = systemd-libs
 	depends = wayland
 	depends = xorg-xwayland
-	source = git+https://gitlab.gnome.org/GNOME/mutter.git#commit=c4753689e3413cd9332d885dd0297b3b7d9ba9ca
+	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=46.0
+	source = 0001-drm-buffer-gbm-Do-not-call-ensure_fb_id-from-lock_fr.patch
 	b2sums = 04a14854c8ec2668a340b241102b7b2ebbc0387a9771a5bd2c2366419ee08e7ebb308f2288f4a64b9d08053e1897eb514a46802584d1590f8bcebde4a613afaa
+	b2sums = fed7d496b658a43b306e62a57c817c54990e8764103eae5479b8a96fbdf25da1ae6028126aa3cccda6239ff1f0c4e69bbe6f12e29804651c1a7b6ca40d6bf36c
 
 pkgname = mutter
 	provides = libmutter-14.so
