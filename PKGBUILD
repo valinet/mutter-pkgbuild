@@ -9,7 +9,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=46.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -99,6 +99,11 @@ b2sums=('04a14854c8ec2668a340b241102b7b2ebbc0387a9771a5bd2c2366419ee08e7ebb308f2
 
 prepare() {
   cd mutter
+
+  # https://gitlab.archlinux.org/archlinux/packaging/packages/mutter/-/issues/3
+  # https://gitlab.gnome.org/GNOME/mutter/-/issues/3384
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3685
+  git cherry-pick -n 22689d722ab4e13ab272c3534f5d18a55c94084f
 
   # https://gitlab.gnome.org/GNOME/mutter/-/issues/3389
   # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3674
