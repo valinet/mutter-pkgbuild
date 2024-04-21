@@ -15,6 +15,7 @@ pkgbase = mutter
 	makedepends = gobject-introspection
 	makedepends = gtk3
 	makedepends = meson
+	makedepends = python-packaging
 	makedepends = sysprof
 	makedepends = wayland-protocols
 	makedepends = xorg-server

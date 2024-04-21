@@ -78,6 +78,7 @@ makedepends=(
   gobject-introspection
   gtk3
   meson
+  python-packaging
   sysprof
   wayland-protocols
   xorg-server
