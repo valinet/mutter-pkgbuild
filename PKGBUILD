@@ -91,7 +91,7 @@ checkdepends=(
 )
 source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
-  "git+https://gitlab.gnome.org/GNOME/mutter.git#tag=$pkgver"
+  "git+$url.git#tag=${pkgver/[a-z]/.&}"
 )
 b2sums=('4acd4a192455890b12b2fc9b6553ed65bd2176307cd6c6683fc2ab476b7fa88f4b5e507a1209b3e900c68d94768f3cf749b4f5d87d25300b33a112182c8a62a7')
 
