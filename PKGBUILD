@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=46.3
+pkgver=46.3.1
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -85,7 +85,7 @@ source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
 )
-b2sums=('b228db453c22a94783ceed71eb9489117e0576293f6daa37b7f20b6992b80ee4e67ebeee3b1cf474d306d2341e8d0e26b16820cec9d6c53132ddc7ffd4157634')
+b2sums=('7d9041df986220470c287fe65194ec6e4da8f15540140fb7e0c3fddc95ce6e9ec9fd4f691ed349a31af28e903c769c97d9817ac65c3cc424b002e095cf559606')
 
 prepare() {
   cd mutter
