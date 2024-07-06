@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=46.3.1
+pkgver=47alpha
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -85,10 +85,12 @@ source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
 )
-b2sums=('7d9041df986220470c287fe65194ec6e4da8f15540140fb7e0c3fddc95ce6e9ec9fd4f691ed349a31af28e903c769c97d9817ac65c3cc424b002e095cf559606')
+b2sums=('02667db8916b209d23729317ff65d75ae415130dade5f28c2ddbc5f200429e90fd3e6154f0db9f1b7e22a29ed001856aaa6800dda10d017c18b1c4ad1e5817da')
 
 prepare() {
   cd mutter
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3848
+  git cherry-pick -n 92d60dbb089efa04419eed5c910738a60dde77a1
 }
 
 build() {
@@ -97,7 +99,7 @@ build() {
     -D egl_device=true
     -D installed_tests=false
     -D libdisplay_info=enabled
-    -D tests=false
+    -D tests=disabled
     -D wayland_eglstream=true
   )
 
@@ -119,7 +121,7 @@ _pick() {
 }
 
 package_mutter() {
-  provides=(libmutter-14.so)
+  provides=(libmutter-15.so)
 
   meson install -C build --destdir "$pkgdir"
 
