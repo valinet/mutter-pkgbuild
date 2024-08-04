@@ -8,8 +8,8 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=47alpha
-pkgrel=3
+pkgver=47beta
+pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -85,18 +85,10 @@ source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
 )
-b2sums=('02667db8916b209d23729317ff65d75ae415130dade5f28c2ddbc5f200429e90fd3e6154f0db9f1b7e22a29ed001856aaa6800dda10d017c18b1c4ad1e5817da')
+b2sums=('625eeaa70a70475fff9137751fe583224088d2b750bf8d4debd6e1f454b0065f4b2afca51457527e03ec41f18ae565309c05de106dd7ac23335c22419258fe7c')
 
 prepare() {
   cd mutter
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3848
-  git cherry-pick -n 92d60dbb089efa04419eed5c910738a60dde77a1
-
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3860
-  git cherry-pick -n 949eb8b638d213120fd5c78f7abe9e208918e72e
-
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3862
-  git cherry-pick -n 041a404ba03b0d66db003f983b8cd6d27852445f
 }
 
 build() {
