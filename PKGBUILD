@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=47beta
+pkgver=47beta+r131+gbd8db3846
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -81,11 +81,17 @@ makedepends=(
   sysprof
   wayland-protocols
 )
+_commit=bd8db38460465c0e3f3512836bf0dac437097f00  # main
 source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
-  "git+$url.git#tag=${pkgver/[a-z]/.&}"
+  "git+$url.git#commit=$_commit"
 )
-b2sums=('625eeaa70a70475fff9137751fe583224088d2b750bf8d4debd6e1f454b0065f4b2afca51457527e03ec41f18ae565309c05de106dd7ac23335c22419258fe7c')
+b2sums=('dfe5cf4ee1e648d2126713bec01cdaf0c8f2b59d010e3b7a2dd97783944bd0ffd8d38272d51db8dadf815142b995d655b6cc18a2435202f5e54a8864090728f6')
+
+pkgver() {
+  cd mutter
+  git describe --tags | sed -r 's/\.([a-z])/\1/;s/([a-z])\./\1/;s/[^-]*-g/r&/;s/-/+/g'
+}
 
 prepare() {
   cd mutter
