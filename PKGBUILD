@@ -9,7 +9,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=47rc
-pkgrel=1
+pkgrel=2
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -89,6 +89,9 @@ b2sums=('a88288f3aba47684f960dac2bdc725107a4feede2c66c0a7b639a8152e4e4ef8171e59d
 
 prepare() {
   cd mutter
+
+  # window/xwayland: Handle arithmetics close to the int limits
+  git cherry-pick -n 2d64965a55f818d40fef0fe04bf3fad70fae29f5
 }
 
 build() {
