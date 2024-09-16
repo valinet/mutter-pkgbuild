@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=46.5
+pkgver=47.0
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -84,8 +84,10 @@ makedepends=(
 source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
+  "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('3c7990afd584836dd092e30813194ac24608416051a9b06c51d2f9577206360cb0f8bafceccc42ce1809d47e7a1676326fe8b87fa231c6abe2d9dddba10b6581')
+b2sums=('0dc3e7541707fe7c9fd24397f08fd29272bd3f104a51503f7657b9b4589a22ee3a6ce407c440785e06bd19b3347fd555c3187aae4f5c87052ce94783d599426d'
+        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
   cd mutter
@@ -97,12 +99,15 @@ build() {
     -D egl_device=true
     -D installed_tests=false
     -D libdisplay_info=enabled
-    -D tests=false
+    -D tests=disabled
     -D wayland_eglstream=true
   )
 
   CFLAGS="${CFLAGS/-O2/-O3} -fno-semantic-interposition"
   LDFLAGS+=" -Wl,-Bsymbolic-functions"
+
+  # Inject gvdb
+  export MESON_PACKAGE_CACHE_DIR="$srcdir"
 
   arch-meson mutter build "${meson_options[@]}"
   meson compile -C build
@@ -119,7 +124,7 @@ _pick() {
 }
 
 package_mutter() {
-  provides=(libmutter-14.so)
+  provides=(libmutter-15.so)
 
   meson install -C build --destdir "$pkgdir"
 
