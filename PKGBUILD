@@ -9,7 +9,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=47.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -85,12 +85,17 @@ source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
+  "0001-Revert_window_wayland_Use_scale_for_configured_rect_in_configuration.patch::https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4041.patch"
 )
 b2sums=('0dc3e7541707fe7c9fd24397f08fd29272bd3f104a51503f7657b9b4589a22ee3a6ce407c440785e06bd19b3347fd555c3187aae4f5c87052ce94783d599426d'
-        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
+        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf'
+        'bc9462d9cd0ac9dc1bf1485bb94bcef9eed102b765f4a9f9883c8f10c38f41eba4c52208b3d410f7acfa36ecb460ce7098dd21af7e1ad9b75a34a955774e87bc')
 
 prepare() {
   cd mutter
+
+  # https://gitlab.gnome.org/GNOME/mutter/-/issues/2616#note_2226442
+  git apply -3 ../0001-Revert_window_wayland_Use_scale_for_configured_rect_in_configuration.patch
 }
 
 build() {
