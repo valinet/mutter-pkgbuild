@@ -9,7 +9,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=47.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -95,6 +95,9 @@ prepare() {
   # Revert "window/wayland: Use scale for configured rect in configuration"
   # https://gitlab.gnome.org/GNOME/mutter/-/commit/70c0eca6b08b7a5aed7a1951149f72f98331a6b4
   git cherry-pick -n 70c0eca6b08b7a5aed7a1951149f72f98331a6b4
+
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4028
+  git cherry-pick -n 18eb1be4915603afc5efead1918dfa8ca744af46
 }
 
 build() {
