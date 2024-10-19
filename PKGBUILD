@@ -8,8 +8,8 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=47.0
-pkgrel=4
+pkgver=47.1
+pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -86,18 +86,11 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('0dc3e7541707fe7c9fd24397f08fd29272bd3f104a51503f7657b9b4589a22ee3a6ce407c440785e06bd19b3347fd555c3187aae4f5c87052ce94783d599426d'
+b2sums=('c9899ea626a1df7d60bc8852b915aa51b88ccbffd924b683d14cb9c38992c949f29572630fec233c538ac3a67166be660878ce9019410bb11dfa481f5e003af9'
         'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
   cd mutter
-
-  # Revert "window/wayland: Use scale for configured rect in configuration"
-  # https://gitlab.gnome.org/GNOME/mutter/-/commit/70c0eca6b08b7a5aed7a1951149f72f98331a6b4
-  git cherry-pick -n 70c0eca6b08b7a5aed7a1951149f72f98331a6b4
-
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4028
-  git cherry-pick -n 18eb1be4915603afc5efead1918dfa8ca744af46
 }
 
 build() {
