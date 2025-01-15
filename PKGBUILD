@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=47.4
+pkgver=48alpha
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -86,7 +86,7 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('24b61029ec913919a9a9d9a929048207e34defa433b1088aa7737efbc267dbd954197500828101e84dc5681ad95f8201f2605675d6aaf6e7e3454f1f24fa78f6'
+b2sums=('9c40ef9b880f8d1bfaa5fd24d64170ddea1f3f49bc4af771511d59856f702512e5cab035fc772b018273ea9b11cb45619a3f366ed674f34fd4c4048982f00f81'
         'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
@@ -98,7 +98,6 @@ build() {
     -D docs=true
     -D egl_device=true
     -D installed_tests=false
-    -D libdisplay_info=enabled
     -D tests=disabled
     -D wayland_eglstream=true
   )
@@ -124,7 +123,7 @@ _pick() {
 }
 
 package_mutter() {
-  provides=(libmutter-15.so)
+  provides=(libmutter-16.so)
 
   meson install -C build --destdir "$pkgdir"
 
