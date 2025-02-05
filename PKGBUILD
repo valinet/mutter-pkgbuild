@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=48alpha
+pkgver=48beta
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -16,6 +16,7 @@ arch=(x86_64)
 license=(GPL-2.0-or-later)
 depends=(
   at-spi2-core
+  bash-completion
   cairo
   colord
   dconf
@@ -66,6 +67,8 @@ depends=(
   pipewire
   pixman
   python
+  python-argcomplete
+  python-gobject
   startup-notification
   systemd-libs
   wayland
@@ -78,6 +81,7 @@ makedepends=(
   glib2-devel
   gobject-introspection
   meson
+  python-docutils
   sysprof
   wayland-protocols
 )
@@ -86,7 +90,7 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('9c40ef9b880f8d1bfaa5fd24d64170ddea1f3f49bc4af771511d59856f702512e5cab035fc772b018273ea9b11cb45619a3f366ed674f34fd4c4048982f00f81'
+b2sums=('7224386ed75c73756780d3ab17406db259d8a489c515cf5cc1c62605615ec7fbdd012cafa1a5d98846108f2ef8ef0dd6d7f2e2035b1bebeee34174ec0810ca70'
         'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
