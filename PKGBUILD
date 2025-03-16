@@ -8,7 +8,7 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=48rc
+pkgver=48.0
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -20,6 +20,7 @@ depends=(
   cairo
   colord
   dconf
+  egl-wayland
   fontconfig
   fribidi
   gcc-libs
@@ -39,6 +40,7 @@ depends=(
   libdisplay-info
   libdrm
   libei
+  libgirepository
   libglvnd
   libgudev
   libice
@@ -75,7 +77,6 @@ depends=(
   xorg-xwayland
 )
 makedepends=(
-  egl-wayland
   gi-docgen
   git
   glib2-devel
@@ -90,7 +91,7 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('86fb2fcde3876108f96a11a166bac7b28dc0283b4c4ee83fbe82f56d0dd3b83e0d9e5d3804152f4f1faa34d31d399c580034d22ef39071491d147268bb511a44'
+b2sums=('2ab67447e212cd8a6491b1f6f0b25aa5663ac70642a9a0d9d77c387787e34e8cbc39951ccae5abf8d5bedc35adfba26aa85487406d50f5da4b5e17739c52c333'
         'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
