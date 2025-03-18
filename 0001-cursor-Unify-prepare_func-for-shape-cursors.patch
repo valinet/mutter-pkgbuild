@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: "Jan Alexander Steffens (heftig)" <heftig@archlinux.org>
 Date: Tue, 18 Mar 2025 22:58:37 +0100
-Subject: [PATCH] wayland: Unify prepare_func for shape cursors
+Subject: [PATCH] cursor: Unify prepare_func for shape cursors
 
 Move the root cursor prepare function into MetaCursorSpriteXcursor to
 become its default prepare function. This should solve two issues:
@@ -12,7 +12,7 @@ become its default prepare function. This should solve two issues:
 - The cursors created via the shape protocol had no prepare function at
   all, so were not getting scaled.
 
-Fixes: https://gitlab.gnome.org/GNOME/mutter/-/issues/3975
+Closes: https://gitlab.gnome.org/GNOME/mutter/-/issues/3975
 ---
  src/backends/meta-cursor-sprite-xcursor.c | 57 ++++++++++++++++++++
  src/core/display.c                        | 63 ++---------------------
