@@ -9,7 +9,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=48.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -90,12 +90,17 @@ source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
+  0001-wayland-Unify-prepare_func-for-shape-cursors.patch
 )
 b2sums=('2ab67447e212cd8a6491b1f6f0b25aa5663ac70642a9a0d9d77c387787e34e8cbc39951ccae5abf8d5bedc35adfba26aa85487406d50f5da4b5e17739c52c333'
-        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
+        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf'
+        '8585193f310d1847cbaed126850f8de699bbffe7f76d27562f376889989e2d32575ac32c1c73e5c4d3cb83c371a52098af328906146f764e0252f0d333cb02e5')
 
 prepare() {
   cd mutter
+
+  # https://gitlab.gnome.org/GNOME/mutter/-/issues/3975
+  git apply -3 ../0001-wayland-Unify-prepare_func-for-shape-cursors.patch
 }
 
 build() {
