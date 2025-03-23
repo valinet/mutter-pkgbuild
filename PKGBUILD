@@ -9,14 +9,13 @@ pkgname=(
   mutter-docs
 )
 pkgver=48.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
 license=(GPL-2.0-or-later)
 depends=(
   at-spi2-core
-  bash-completion
   cairo
   colord
   dconf
@@ -77,6 +76,7 @@ depends=(
   xorg-xwayland
 )
 makedepends=(
+  bash-completion
   gi-docgen
   git
   glib2-devel
@@ -146,6 +146,7 @@ _pick() {
 
 package_mutter() {
   provides=(libmutter-16.so)
+  optdepends=('bash-completion: Bash completions for gdctl')
 
   meson install -C build --destdir "$pkgdir"
 

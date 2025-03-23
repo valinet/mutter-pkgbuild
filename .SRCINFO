@@ -1,10 +1,11 @@
 pkgbase = mutter
 	pkgdesc = Window manager and compositor for GNOME
 	pkgver = 48.0
-	pkgrel = 3
+	pkgrel = 4
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
 	license = GPL-2.0-or-later
+	makedepends = bash-completion
 	makedepends = gi-docgen
 	makedepends = git
 	makedepends = glib2-devel
@@ -14,7 +15,6 @@ pkgbase = mutter
 	makedepends = sysprof
 	makedepends = wayland-protocols
 	depends = at-spi2-core
-	depends = bash-completion
 	depends = cairo
 	depends = colord
 	depends = dconf
@@ -85,6 +85,7 @@ pkgbase = mutter
 	b2sums = 6ba5b237afa2c9ce89c0980b8f4729810eac9ad49e754493978bdbc32942106bf4eba0c9065d770be4feec25c5b149e942c3b4c4d1d8c753eacc68b408fd0f39
 
 pkgname = mutter
+	optdepends = bash-completion: Bash completions for gdctl
 	provides = libmutter-16.so
 
 pkgname = mutter-docs
