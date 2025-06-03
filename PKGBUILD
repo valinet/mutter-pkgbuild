@@ -8,8 +8,8 @@ pkgname=(
   mutter
   mutter-docs
 )
-pkgver=48.3
-pkgrel=3
+pkgver=48.3.1
+pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -91,18 +91,11 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=466fc22016cf0981424e7121557611942191992f"
 )
-b2sums=('d8b1d4ff788075c26f25dd40b9f46de640e523ea3acefb2d9d178033d1780ff63d882e730d47001224e27683d01d8453330d54a8282d3699ab65cad2e76372eb'
+b2sums=('7160b85f2472e1999a6ab0af0521899fed7a6ab6d21bc892070699c0a38102af0a978cca817d91433a6c49aaa51bb4266988d9c1f70c790313d99dcbb44af2dc'
         'c25796ff54fee353c5fc7a0815c25255b399490148d2bad1f37932d2da66d80561d6e262a5f256c89d142419a504c23eff69f7ef4e65e349f2dea3e0ac0bac1a')
 
 prepare() {
   cd mutter
-
-  # Avoid some window tracking issues with XWayland
-  # https://gitlab.archlinux.org/archlinux/packaging/packages/mutter/-/issues/12
-  # https://gitlab.gnome.org/GNOME/mutter/-/issues/4133
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4465
-  git cherry-pick -n 5a78e6ae05ddf099d62e956c32b07ade7321b9b5
-  git cherry-pick -n a38fe3a50427bd0ffdd86d0a565371d992027438
 }
 
 build() {
