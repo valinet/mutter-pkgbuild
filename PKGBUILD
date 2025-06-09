@@ -6,9 +6,10 @@
 pkgbase=mutter
 pkgname=(
   mutter
+  mutter-devkit
   mutter-docs
 )
-pkgver=48.3.1
+pkgver=49alpha.0
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -91,7 +92,7 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=466fc22016cf0981424e7121557611942191992f"
 )
-b2sums=('7160b85f2472e1999a6ab0af0521899fed7a6ab6d21bc892070699c0a38102af0a978cca817d91433a6c49aaa51bb4266988d9c1f70c790313d99dcbb44af2dc'
+b2sums=('b4bc7c00355f88923d80157139efb84393df14aaf3bfedc6dc2296fecb091faf300865a11571e889b20cb50be6121e9fa851c6beb1747ac6946b83ec6a89bbbe'
         'c25796ff54fee353c5fc7a0815c25255b399490148d2bad1f37932d2da66d80561d6e262a5f256c89d142419a504c23eff69f7ef4e65e349f2dea3e0ac0bac1a')
 
 prepare() {
@@ -133,7 +134,29 @@ package_mutter() {
 
   meson install -C build --destdir "$pkgdir"
 
+  _pick devkit "$pkgdir"/usr/lib/mutter-devkit
+  _pick devkit "$pkgdir"/usr/share/applications/org.gnome.Mutter.Mdk.desktop
+  _pick devkit "$pkgdir"/usr/share/icons/hicolor/scalable/apps/org.gnome.Mutter.Mdk.Devel.svg
+  _pick devkit "$pkgdir"/usr/share/icons/hicolor/scalable/apps/org.gnome.Mutter.Mdk.svg
+  _pick devkit "$pkgdir"/usr/share/icons/hicolor/symbolic/apps/org.gnome.Mutter.Mdk-symbolic.svg
+
   _pick docs "$pkgdir"/usr/share/mutter-*/doc
+}
+
+package_mutter-devkit() {
+  pkgdesc="GNOME Mutter Development Kit"
+  depends=(
+    gcc-libs
+    glib2
+    glibc
+    gtk4
+    hicolor-icon-theme
+    libei
+    libpipewire
+    mutter
+  )
+
+  mv devkit/* "$pkgdir"
 }
 
 package_mutter-docs() {

@@ -1,6 +1,6 @@
 pkgbase = mutter
 	pkgdesc = Window manager and compositor for GNOME
-	pkgver = 48.3.1
+	pkgver = 49alpha.0
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
@@ -73,14 +73,25 @@ pkgbase = mutter
 	depends = systemd-libs
 	depends = wayland
 	depends = xorg-xwayland
-	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=48.3.1
+	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=49.alpha.0
 	source = git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=466fc22016cf0981424e7121557611942191992f
-	b2sums = 7160b85f2472e1999a6ab0af0521899fed7a6ab6d21bc892070699c0a38102af0a978cca817d91433a6c49aaa51bb4266988d9c1f70c790313d99dcbb44af2dc
+	b2sums = b4bc7c00355f88923d80157139efb84393df14aaf3bfedc6dc2296fecb091faf300865a11571e889b20cb50be6121e9fa851c6beb1747ac6946b83ec6a89bbbe
 	b2sums = c25796ff54fee353c5fc7a0815c25255b399490148d2bad1f37932d2da66d80561d6e262a5f256c89d142419a504c23eff69f7ef4e65e349f2dea3e0ac0bac1a
 
 pkgname = mutter
 	optdepends = bash-completion: Bash completions for gdctl
 	provides = libmutter-16.so
+
+pkgname = mutter-devkit
+	pkgdesc = GNOME Mutter Development Kit
+	depends = gcc-libs
+	depends = glib2
+	depends = glibc
+	depends = gtk4
+	depends = hicolor-icon-theme
+	depends = libei
+	depends = libpipewire
+	depends = mutter
 
 pkgname = mutter-docs
 	pkgdesc = Window manager and compositor for GNOME (documentation)
