@@ -10,7 +10,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=49alpha.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -130,7 +130,10 @@ _pick() {
 
 package_mutter() {
   provides=(libmutter-16.so)
-  optdepends=('bash-completion: Bash completions for gdctl')
+  optdepends=(
+    'bash-completion: Bash completions for gdctl'
+    'mutter-devkit: Mutter SDK, "MDK"'
+  )
 
   meson install -C build --destdir "$pkgdir"
 
