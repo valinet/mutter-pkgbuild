@@ -9,7 +9,7 @@ pkgname=(
   mutter-devkit
   mutter-docs
 )
-pkgver=49alpha.1
+pkgver=49beta
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -92,7 +92,7 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=466fc22016cf0981424e7121557611942191992f"
 )
-b2sums=('6b62f5136cde7aff17305ab1a408b66c4420e7229f0d8ba01c8881ef14f8cc1c154db870ef3829828b1af90badf1e3ce0eaeaa8196f3b7872452950f7ab8f840'
+b2sums=('f978779e0d3cf1db61fe795db29811299b0fcabf3a5680a6b7599c6553780164c70cb717e33f8d595bdb7edfcce538dfb785d1713b9d7a9caaf2dfccc99fb660'
         'c25796ff54fee353c5fc7a0815c25255b399490148d2bad1f37932d2da66d80561d6e262a5f256c89d142419a504c23eff69f7ef4e65e349f2dea3e0ac0bac1a')
 
 prepare() {
@@ -129,7 +129,7 @@ _pick() {
 }
 
 package_mutter() {
-  provides=(libmutter-16.so)
+  provides=(libmutter-17.so)
   optdepends=(
     'bash-completion: Bash completions for gdctl'
     'mutter-devkit: Mutter SDK, "MDK"'

@@ -1,6 +1,6 @@
 pkgbase = mutter
 	pkgdesc = Window manager and compositor for GNOME
-	pkgver = 49alpha.1
+	pkgver = 49beta
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
@@ -73,15 +73,15 @@ pkgbase = mutter
 	depends = systemd-libs
 	depends = wayland
 	depends = xorg-xwayland
-	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=49.alpha.1
+	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=49.beta
 	source = git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=466fc22016cf0981424e7121557611942191992f
-	b2sums = 6b62f5136cde7aff17305ab1a408b66c4420e7229f0d8ba01c8881ef14f8cc1c154db870ef3829828b1af90badf1e3ce0eaeaa8196f3b7872452950f7ab8f840
+	b2sums = f978779e0d3cf1db61fe795db29811299b0fcabf3a5680a6b7599c6553780164c70cb717e33f8d595bdb7edfcce538dfb785d1713b9d7a9caaf2dfccc99fb660
 	b2sums = c25796ff54fee353c5fc7a0815c25255b399490148d2bad1f37932d2da66d80561d6e262a5f256c89d142419a504c23eff69f7ef4e65e349f2dea3e0ac0bac1a
 
 pkgname = mutter
 	optdepends = bash-completion: Bash completions for gdctl
 	optdepends = mutter-devkit: Mutter SDK, "MDK"
-	provides = libmutter-16.so
+	provides = libmutter-17.so
 
 pkgname = mutter-devkit
 	pkgdesc = GNOME Mutter Development Kit
