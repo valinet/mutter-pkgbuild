@@ -9,7 +9,7 @@ pkgname=(
   mutter-devkit
   mutter-docs
 )
-pkgver=49rc
+pkgver=49.0
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
@@ -27,6 +27,7 @@ depends=(
   gdk-pixbuf2
   glib2
   glibc
+  glycin
   gnome-desktop-4
   gnome-settings-daemon
   graphene
@@ -70,6 +71,7 @@ depends=(
   pixman
   python
   python-argcomplete
+  python-dbus
   python-gobject
   startup-notification
   systemd-libs
@@ -90,10 +92,10 @@ makedepends=(
 source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
-  "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=466fc22016cf0981424e7121557611942191992f"
+  "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('7962faf3a6a4e00688ef5dc3491da7f2a00458052a96f4d0099f40add2bb4c1dff3f2712413f41662db669eded814a3985ee50c80c4652c347f5643058e2f7e0'
-        'c25796ff54fee353c5fc7a0815c25255b399490148d2bad1f37932d2da66d80561d6e262a5f256c89d142419a504c23eff69f7ef4e65e349f2dea3e0ac0bac1a')
+b2sums=('99defeefd72cc366cfa5c433a22d855400cc14c1f41d7cfe08008fd98a0b7a36295e3591dead6e7ebec489a526f8cd9af5471031d36becb4de6b441391bd9e07'
+        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
   cd mutter
@@ -154,6 +156,7 @@ package_mutter-devkit() {
     glibc
     gtk4
     hicolor-icon-theme
+    libadwaita
     libei
     libpipewire
     mutter
