@@ -10,7 +10,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=49.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -99,6 +99,11 @@ b2sums=('99defeefd72cc366cfa5c433a22d855400cc14c1f41d7cfe08008fd98a0b7a36295e359
 
 prepare() {
   cd mutter
+
+  # Fix focus problems
+  # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/8640
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4667
+  git cherry-pick -n 353b03b689216d7e1c5ebd0acaf2c433d712294c
 }
 
 build() {
