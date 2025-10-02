@@ -10,7 +10,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=49.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -115,9 +115,8 @@ prepare() {
   # Caps lock fixes
   # https://gitlab.gnome.org/GNOME/mutter/-/issues/4351
   # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4686
-  git cherry-pick -n 7df1c974d5d7c7e0cfb1bb7d926725f6829f1d12
-  git cherry-pick -n 9d6b65d112c898138123429d47ebea939f5d320b
-  git cherry-pick -n d66094486383562ec8a38594ec821a7f4f3bdd0f
+  git cherry-pick -n c0fd2d95568e36a9c96011ff98d6c5beba2c8879 \
+                     0828fd6169c17ca54633f76936f03ac496f6b01e
 }
 
 build() {
