@@ -111,6 +111,13 @@ prepare() {
   git cherry-pick -n d9410c0ec6923016d0fc5c4abb9ea41061a93ae4
   # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4679
   git cherry-pick -n 85216f2db006a5f51703c0bcd519e9d630e9b7eb
+
+  # Caps lock fixes
+  # https://gitlab.gnome.org/GNOME/mutter/-/issues/4351
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4686
+  git cherry-pick -n 7df1c974d5d7c7e0cfb1bb7d926725f6829f1d12
+  git cherry-pick -n 9d6b65d112c898138123429d47ebea939f5d320b
+  git cherry-pick -n d66094486383562ec8a38594ec821a7f4f3bdd0f
 }
 
 build() {
