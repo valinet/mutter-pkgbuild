@@ -9,8 +9,8 @@ pkgname=(
   mutter-devkit
   mutter-docs
 )
-pkgver=49.0
-pkgrel=5
+pkgver=49.1
+pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -94,29 +94,11 @@ source=(
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('99defeefd72cc366cfa5c433a22d855400cc14c1f41d7cfe08008fd98a0b7a36295e3591dead6e7ebec489a526f8cd9af5471031d36becb4de6b441391bd9e07'
+b2sums=('6fbecaaaf6de11fef0e1fc1160d541f686aa7dd51b65b3a74384e9f20c11dda575330a29772dad5e5d12439444c9610e2886620dbd491b58c6fc57518c7753a0'
         'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
   cd mutter
-
-  # Fix focus problems
-  # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/8640
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4667
-  git cherry-pick -n 353b03b689216d7e1c5ebd0acaf2c433d712294c
-
-  # Crash fixes
-  # https://gitlab.gnome.org/GNOME/mutter/-/issues/4340
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4676
-  git cherry-pick -n d9410c0ec6923016d0fc5c4abb9ea41061a93ae4
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4679
-  git cherry-pick -n 85216f2db006a5f51703c0bcd519e9d630e9b7eb
-
-  # Caps lock fixes
-  # https://gitlab.gnome.org/GNOME/mutter/-/issues/4351
-  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4686
-  git cherry-pick -n c0fd2d95568e36a9c96011ff98d6c5beba2c8879 \
-                     0828fd6169c17ca54633f76936f03ac496f6b01e
 }
 
 build() {

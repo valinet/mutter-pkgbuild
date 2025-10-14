@@ -1,7 +1,7 @@
 pkgbase = mutter
 	pkgdesc = Window manager and compositor for GNOME
-	pkgver = 49.0
-	pkgrel = 5
+	pkgver = 49.1
+	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -75,9 +75,9 @@ pkgbase = mutter
 	depends = systemd-libs
 	depends = wayland
 	depends = xorg-xwayland
-	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=49.0
+	source = git+https://gitlab.gnome.org/GNOME/mutter.git#tag=49.1
 	source = git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3
-	b2sums = 99defeefd72cc366cfa5c433a22d855400cc14c1f41d7cfe08008fd98a0b7a36295e3591dead6e7ebec489a526f8cd9af5471031d36becb4de6b441391bd9e07
+	b2sums = 6fbecaaaf6de11fef0e1fc1160d541f686aa7dd51b65b3a74384e9f20c11dda575330a29772dad5e5d12439444c9610e2886620dbd491b58c6fc57518c7753a0
 	b2sums = f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf
 
 pkgname = mutter
