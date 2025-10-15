@@ -10,7 +10,7 @@ pkgname=(
   mutter-docs
 )
 pkgver=49.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Window manager and compositor for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -93,12 +93,22 @@ source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
   "git+$url.git#tag=${pkgver/[a-z]/.&}"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
+  0001-xwayland-Fix-guards-in-meta_window_xwayland_stage_to.patch
+  0002-xwayland-dnd-Pass-dest-to-meta_x11_display_lookup_x_.patch
 )
 b2sums=('6fbecaaaf6de11fef0e1fc1160d541f686aa7dd51b65b3a74384e9f20c11dda575330a29772dad5e5d12439444c9610e2886620dbd491b58c6fc57518c7753a0'
-        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
+        'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf'
+        '6bb2ca71b8156162ebe8b557d359abf92779ac0684957900ecc4de5b813e64ed3bafb426acb23df2003c73aa1969786eb49dc6a00b80163db14b318da98203ba'
+        '9a75295f399516426aa279db5dca3b3d72b971e6f34af72c1f1200f6feac182fc528410610da81baa1fc3bdb9180a4e88b836aa947d3a479d1fd00354c698db3')
 
 prepare() {
   cd mutter
+
+  # Fix drag-and-drop crashes
+  # https://gitlab.archlinux.org/archlinux/packaging/packages/mutter/-/issues/18
+  # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4720
+  git apply -3 ../0001-xwayland-Fix-guards-in-meta_window_xwayland_stage_to.patch
+  git apply -3 ../0002-xwayland-dnd-Pass-dest-to-meta_x11_display_lookup_x_.patch
 }
 
 build() {
