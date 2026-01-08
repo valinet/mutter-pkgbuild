@@ -3,16 +3,17 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: Michael Kanis <mkanis_at_gmx_dot_de>
 
-pkgbase=mutter
+options=(!strip)
+pkgbase=mutter2
 pkgname=(
-  mutter
-  mutter-devkit
-  mutter-docs
+  mutter2
+  #mutter2-devkit
+  #mutter2-docs
 )
 pkgver=49.2
 pkgrel=1
 pkgdesc="Window manager and compositor for GNOME"
-url="https://gitlab.gnome.org/GNOME/mutter"
+url="https://github.com/valinet/mutter"
 arch=(x86_64)
 license=(GPL-2.0-or-later)
 depends=(
@@ -91,10 +92,10 @@ makedepends=(
 )
 source=(
   # Mutter tags use SSH signatures which makepkg doesn't understand
-  "git+$url.git#tag=${pkgver/[a-z]/.&}"
+  "git+$url.git"
   "git+https://gitlab.gnome.org/GNOME/gvdb.git#commit=b54bc5da25127ef416858a3ad92e57159ff565b3"
 )
-b2sums=('1418475009a439c6360d0c9f972595d55c70fa7ac18badeb84fc0f560f793fa1a7f7c75b7204acff00c593021e19dd1f92bbaaa9d8037d0d9ae2b5d3fdce0cb7'
+b2sums=('SKIP'
         'f989bc2ceb52aad3c6a23c439df3bbc672bc11d561a247d19971d30cc85ed5d42295de40f8e55b13404ed32aa44f12307c9f5b470f2e288d1c9c8329255c43bf')
 
 prepare() {
@@ -130,8 +131,9 @@ _pick() {
   done
 }
 
-package_mutter() {
-  provides=(libmutter-17.so)
+package_mutter2() {
+  provides=(mutter libmutter-17.so)
+  conflicts=(mutter)
   optdepends=(
     'bash-completion: Bash completions for gdctl'
     'mutter-devkit: Mutter SDK, "MDK"'
@@ -148,7 +150,7 @@ package_mutter() {
   _pick docs "$pkgdir"/usr/share/mutter-*/doc
 }
 
-package_mutter-devkit() {
+package_mutter2-devkit() {
   pkgdesc="GNOME Mutter Development Kit"
   depends=(
     gcc-libs
@@ -165,7 +167,7 @@ package_mutter-devkit() {
   mv devkit/* "$pkgdir"
 }
 
-package_mutter-docs() {
+package_mutter2-docs() {
   pkgdesc+=" (documentation)"
   depends=()
 
